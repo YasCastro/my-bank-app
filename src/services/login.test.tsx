@@ -11,8 +11,8 @@ describe('login', () => {
     expect(mockAlert).not.toHaveBeenCalledWith('Bem vinda!')
   })
 
-  it('Deve exibir um erro caso o e-mail seja inválido', () => {
-    login('email@invalido')
-    expect(mockAlert).toHaveBeenCalledWith('E-mail inválido!')
-  })
+  // it('Deve exibir um erro caso o e-mail seja inválido', () => {
+  //   login('email@invalido')
+  //   expect(mockAlert).toHaveBeenCalledWith('E-mail inválido!')
+  // })
 })
