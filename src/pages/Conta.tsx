@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Center, SimpleGrid, Spinner } from "@chakra-ui/react";
 import { api } from "../api";
 import { CardInfo } from "../components/CardInfo";
+import { AppContext } from "../components/AppContext";
 
 interface UserData {
   email: string,
@@ -16,6 +17,7 @@ const Conta = () => {
   const navigate = useNavigate()
   const actualDate = new Date()
   const { id } = useParams()
+  const context = useContext(AppContext)
 
   useEffect(() => {
     const getData = async () => {
