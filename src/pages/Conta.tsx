@@ -17,8 +17,9 @@ const Conta = () => {
   const navigate = useNavigate()
   const actualDate = new Date()
   const { id } = useParams()
-  const context = useContext(AppContext)
+  const { isLoggedIn } = useContext(AppContext)
 
+  !isLoggedIn && navigate('/')
   useEffect(() => {
     const getData = async () => {
       const data: any | UserData = await api
