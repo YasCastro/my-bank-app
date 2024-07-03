@@ -1,12 +1,27 @@
 import { Box, Button, Center, Heading, Input } from "@chakra-ui/react";
 import { Card } from "../components/Card";
 import { login } from "../services/login";
-import { useState } from "react";
+import { MouseEventHandler, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../components/AppContext";
 
 
 const Home = () => {
   const [email, setEmail] = useState<string>('')
-  
+  const { setIsLoggedIn } = useContext(AppContext) 
+  const navigate = useNavigate()
+
+
+  const validateUSer  = async(email: string) => {
+    const loggedIn = await login(email)
+
+    if(!loggedIn) {
+      alert('Email inválido')
+    }
+    setIsLoggedIn(true)
+    navigate('conta/1')
+  } 
+
   return (
     <Box>
       <Card>
@@ -27,7 +42,7 @@ const Home = () => {
         />
         <Center>
           <Button
-            onClick={() => login(email)}
+            onClick={() => validateUSer(email)}
             colorScheme="purple"
             size="lg"
             width="100%"

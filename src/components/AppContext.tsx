@@ -1,8 +1,8 @@
 import { createContext, useState } from "react";
 
 interface IAppContext {
-  user: string
-  isLoggedIn: boolean
+  user: string,
+  isLoggedIn: boolean,
   setIsLoggedIn: (  isLoggedIn: boolean  ) => void
 }
 
