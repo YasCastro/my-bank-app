@@ -9,7 +9,7 @@ describe('storage', () => {
     getAllLocalStorage()
     expect(mockGetItem).toHaveBeenCalledWith('bestbank')
   })
-  it('Deve retornar o objeto no localStorage', () => {
+  it('Deve criar o objeto no localStorage', () => {
     const mockSetItem = jest.spyOn(Storage.prototype, 'setItem')
     createLocalStorage()
     expect(mockSetItem).toHaveBeenCalledWith('bestBank', JSON.stringify(bestBank))
