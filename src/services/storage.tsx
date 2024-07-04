@@ -1,7 +1,10 @@
+const bestBank = {
+  login: false
+}
 export const getAllLocalStorage = () => {
-  return localStorage.getItem('')
+  return localStorage.getItem('bestbank')
 }
 
 export const createLocalStorage = (): void => {
-  localStorage.setItem('diobank')
+  localStorage.setItem('bestbank', JSON.stringify(bestBank))
 }
