@@ -1,10 +1,18 @@
+interface IBestBank {
+  login: boolean
+}
+
 const bestBank = {
   login: false
 }
-export const getAllLocalStorage = () => {
-  return localStorage.getItem('bestbank')
+export const getAllLocalStorage = (): string | null => {
+  return localStorage.getItem('bestBank')
 }
 
 export const createLocalStorage = (): void => {
-  localStorage.setItem('bestbank', JSON.stringify(bestBank))
+  localStorage.setItem('bestBank', JSON.stringify(bestBank))
+}
+
+export const changeLocalStorage = (bestBank: IBestBank): void => {
+  localStorage.setItem('bestBank', JSON.stringify(bestBank))
 }
