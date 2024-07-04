@@ -9,7 +9,10 @@ const ContaInfo = () => {
       </Text>
       <Link to="/conta/1">
         <Text fontSize="3xl">
-          Conta
+          {`Nome: Yasmine`}
+        </Text>
+        <Text fontSize="3xl">
+          {`E-mail: yas@mail.com`}
         </Text>
       </Link>
     </>

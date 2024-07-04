@@ -1,20 +1,20 @@
 import { Box, Button, Center, Heading, Input } from "@chakra-ui/react";
 import { Card } from "../components/Card";
 import { login } from "../services/login";
-import { MouseEventHandler, useContext, useState } from "react";
+import {  useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../components/AppContext";
-import { changeLocalStorage } from "../services/storage";
+import { changeLocalStorage, getAllLocalStorage } from "../services/storage";
 
 
 const Home = () => {
   const [email, setEmail] = useState<string>('')
-  const { setIsLoggedIn } = useContext(AppContext) 
+  const [password, setPassword] = useState<string>('')
+  const { isLoggedIn, setIsLoggedIn } = useContext(AppContext) 
   const navigate = useNavigate()
 
-
   const validateUSer  = async(email: string) => {
-    const loggedIn = await login(email)
+    const loggedIn = await login(email, password)
 
     if(!loggedIn) {
       return alert('Email inválido')
@@ -27,32 +27,42 @@ const Home = () => {
   return (
     <Box>
       <Card>
-      <Center>
-          <Heading color="purple.800">Faça o login</Heading>
-        </Center>
-        <Input
-          placeholder="email"
-          marginTop="40px"
-          variant="flushed"
-          value={ email }
-          onChange={(event) => setEmail(event.target.value)}/>      
-        <Input
-          placeholder="password"
-          type="password"
-          marginTop="10px"
-          variant="flushed"
-        />
-        <Center>
-          <Button
-            onClick={() => validateUSer(email)}
-            colorScheme="purple"
-            size="lg"
-            width="100%"
-            marginTop="40px"
-          >
-            Login
-          </Button>
-        </Center>
+        {
+          isLoggedIn === true ? 
+          <Center>
+          <Heading color="purple.800">Você está logado</Heading>
+        </Center> :
+        <>
+              <Center>
+                <Heading color="purple.800">Faça o login</Heading>
+              </Center>
+              <Input
+                placeholder="email"
+                marginTop="40px"
+                variant="flushed"
+                value={ email }
+                onChange={(event) => setEmail(event.target.value)}/>      
+              <Input
+                placeholder="password"
+                type="password"
+                marginTop="10px"
+                variant="flushed"
+                value={ password }
+                onChange={(event) => setPassword(event.target.value)}
+              />
+              <Center>
+                <Button
+                  onClick={() => validateUSer(email)}
+                  colorScheme="purple"
+                  size="lg"
+                  width="100%"
+                  marginTop="40px"
+                >
+                  Login
+                </Button>
+            </Center>
+        </>
+      }
       </Card>   
     </Box>
   )
